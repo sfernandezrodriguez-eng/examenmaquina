@@ -13,15 +13,22 @@ var nivel_1: Boolean=false
 fun gestor(): Int {
     when (estado_actual) {
         is Estados.Idle -> {
+            println("Bienvenido al ascnesor")
             nivel_actual = 0
             if (nivel_0) {
+                nivel_actual = -1
                 estado_actual = Estados.Error
+
             }
             else if (nivel_1){
-                estado_actual = Estados.MovingUP
+                nivel_actual = 2
+                estado_actual = Estados.MovingUP(nivel_actual)
+
             }
             else if (nivel_1 && nivel_0){
+                nivel_actual = -1
                 estado_actual = Estados.Error
+
             }
 
             return nivel_actual
