@@ -1,5 +1,10 @@
 package org.danielcastelao.dam
 
+import org.danielcastelao.dam.Gestor.estado_actual
+import org.danielcastelao.dam.Gestor.gestor
+import org.danielcastelao.dam.Gestor.nivel_0
+import org.danielcastelao.dam.Gestor.nivel_1
+import org.danielcastelao.dam.Gestor.nivel_actual
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -7,43 +12,104 @@ import kotlin.test.assertEquals
 class GestorTest {
     @AfterTest
     fun restaurarEstado() {
-        estado_acual = Estados.Idle
+        estado_actual = Estados.Idle
         nivel_actual = 0
     }
 
     @Test
-    fun `gestor reinicia el nivel cuando el estado es Idle`() {
-        estado_acual = Estados.Idle
-        nivel_actual = 5
+    fun estadoIdle() {
+        estado_actual = Estados.Idle
+        nivel_actual = 0
 
         assertEquals(0, gestor())
         assertEquals(0, nivel_actual)
     }
 
     @Test
-    fun `gestor establece el nivel cuando el estado es MovingUP`() {
-        estado_acual = Estados.MovingUP
-        nivel_actual = 5
+    fun pasandoMovingUp() {
+        estado_actual = Estados.Idle
+        nivel_actual = 0
+        nivel_0.equals(false)
+        nivel_1.equals(true)
+        Gestor.gestor()
 
-        assertEquals(2, gestor())
-        assertEquals(2, nivel_actual)
+        assertEquals(
+            Estados.MovingUP(nivel_actual),
+            Gestor.estado_actual
+        )
     }
 
     @Test
-    fun `gestor establece el nivel cuando el estado es MovingDOWN`() {
-        estado_acual = Estados.MovingDOWN
-        nivel_actual = 5
+    fun pasandoMovingDown() {
+        estado_actual = Estados.Idle
+        nivel_actual = 1
+        nivel_0.equals(false)
+        nivel_1.equals(true)
+        Gestor.gestor()
 
-        assertEquals(2, gestor())
-        assertEquals(2, nivel_actual)
+        assertEquals(
+            Estados.MovingUP(nivel_actual),
+            Gestor.estado_actual
+        )
     }
 
     @Test
-    fun `gestor establece el nivel de error cuando el estado es Error`() {
-        estado_acual = Estados.Error
-        nivel_actual = 5
+    fun pasandoMovingUpAIdle() {
+        estado_actual = Estados.MovingUP(nivel_actual)
+        nivel_actual = 2
+        nivel_0.equals(false)
+        nivel_1.equals(false)
+        Gestor.gestor()
 
-        assertEquals(-1, gestor())
-        assertEquals(-1, nivel_actual)
+        assertEquals(
+            Estados.Idle,
+            Gestor.estado_actual
+        )
     }
+
+    @Test
+    fun pasandoMovingDownAIdle() {
+        estado_actual = Estados.MovingDOWN(nivel_actual)
+        nivel_actual = 2
+        nivel_0.equals(false)
+        nivel_1.equals(false)
+        Gestor.gestor()
+
+        assertEquals(
+            Estados.Idle,
+            Gestor.estado_actual
+        )
+    }
+
+    @Test
+    fun estadoIdleAError() {
+        estado_actual = Estados.Idle
+        nivel_actual = 1
+        nivel_0.equals(true)
+        nivel_1.equals(true)
+        Gestor.gestor()
+
+        assertEquals(
+            Estados.Error(nivel_actual),
+            Gestor.estado_actual
+        )
+    }
+
+    @Test
+    fun pasandoMovingDownAError() {
+        estado_actual = Estados.MovingDOWN(nivel_actual)
+        nivel_actual = 2
+        nivel_0.equals(true)
+        nivel_1.equals(true)
+        Gestor.gestor()
+
+        assertEquals(
+            Estados.Error(nivel_actual),
+            Gestor.estado_actual
+        )
+    }
+
+
+
+
 }
