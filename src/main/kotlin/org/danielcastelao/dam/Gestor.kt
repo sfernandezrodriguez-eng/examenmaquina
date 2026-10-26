@@ -14,11 +14,15 @@ fun gestor(): Int {
     when (estado_actual) {
         is Estados.Idle -> {
             nivel_actual = 0
-            while (nivel_0 != true or nivel_1 != true){
-                nivel_actual = 0
-                estado_actual = Estados.Idle
+            if (nivel_0) {
+                estado_actual = Estados.Error
             }
-
+            else if (nivel_1){
+                estado_actual = Estados.MovingUP
+            }
+            else if (nivel_1 && nivel_0){
+                estado_actual = Estados.Error
+            }
 
             return nivel_actual
         }
