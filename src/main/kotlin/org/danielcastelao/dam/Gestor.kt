@@ -19,7 +19,7 @@ fun gestor(): Int {
             if(nivel_actual== 0) {
                 if (nivel_0) {
                     nivel_actual = -1
-                    estado_actual = Estados.Error
+                    estado_actual = Estados.Error(nivel_actual)
 
                 } else if (nivel_1) {
                     nivel_actual = 2
@@ -27,27 +27,27 @@ fun gestor(): Int {
 
                 } else if (nivel_1 && nivel_0) {
                     nivel_actual = -1
-                    estado_actual = Estados.Error
+                    estado_actual = Estados.Error(nivel_actual)
 
                 }
             } else if (nivel_actual == 1) {
                 if (nivel_1) {
                     nivel_actual = -1
-                    estado_actual = Estados.Error
+                    estado_actual = Estados.Error(nivel_actual)
 
                 } else if (nivel_0) {
                     nivel_actual = 2
-                    estado_actual = Estados.MovingDOWN
+                    estado_actual = Estados.MovingDOWN(nivel_actual)
 
                 } else if (nivel_1 && nivel_0) {
                     nivel_actual = -1
-                    estado_actual = Estados.Error
+                    estado_actual = Estados.Error(nivel_actual)
 
                 }
             }
             else{
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
             }
 
             return nivel_actual
@@ -59,15 +59,15 @@ fun gestor(): Int {
 
             if (nivel_0) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             } else if (nivel_1) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             } else if (nivel_1 && nivel_0) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             }
             else{
@@ -82,15 +82,15 @@ fun gestor(): Int {
 
             if (nivel_0) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             } else if (nivel_1) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             } else if (nivel_1 && nivel_0) {
                 nivel_actual = -1
-                estado_actual = Estados.Error
+                estado_actual = Estados.Error(nivel_actual)
 
             }
             else{
