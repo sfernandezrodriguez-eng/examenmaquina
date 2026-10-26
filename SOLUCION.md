@@ -20,7 +20,7 @@ a su destino volvera al estado inicial en el que si tocas un boton se mantendra 
 stateDiagram-v2
     [*] --> Idle
 
-    Idle --> MovingUP: ?
+    Idle --> MovingUP: nivel_1 True
     MovingUP --> Idle: ?
 
     Idle --> MovingDOWN: ?

@@ -109,7 +109,6 @@ sealed class Estados {
         fun onEnter(): Int {
             nivel_actual = -1
             println("Ha habido un problema, se esta solucionando")
-            estado_actual = Estados.Idle
             return nivel_actual
         }
         override fun toString(): String {
