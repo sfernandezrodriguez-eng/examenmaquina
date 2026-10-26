@@ -45,3 +45,12 @@ el proyecto a veces falla, nuestro equipo no aun del todo porque es pero antes d
 las pruebas que se habian hecho (no me acuerdo en que commit) habian salido bien. No se sabe si es porque
 al ser una clase actua diferente.
 
+
+
+## Capturas
+
+![img.png](img.png)
+
+
+![img_1.png](img_1.png)
+

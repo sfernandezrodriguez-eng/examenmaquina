@@ -15,7 +15,7 @@ sealed class Estados {
                     nivel_actual = -1
                     estado_actual = Estados.Error(nivel_actual)
 
-                } else if (nivel_1.equals(true)) {
+                } else if (nivel_1.equals(false)) {
                     nivel_actual = 2
                     estado_actual = Estados.MovingUP(nivel_actual)
 

@@ -29,7 +29,6 @@ class GestorTest {
     fun pasandoMovingUp() {
         estado_actual = Estados.Idle
         nivel_actual = 0
-        Botonera.nivel_0.equals(false)
         Botonera.nivel_1.equals(true)
         Gestor.gestor()
 
@@ -57,8 +56,6 @@ class GestorTest {
     fun pasandoMovingUpAIdle() {
         estado_actual = Estados.MovingUP(nivel_actual)
         nivel_actual = 2
-        nivel_0.equals(false)
-        nivel_1.equals(false)
         Gestor.gestor()
 
         assertEquals(
