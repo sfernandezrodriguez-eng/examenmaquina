@@ -47,19 +47,67 @@ sealed class Estados {
         }
     }
     data class MovingUP(val estado_actual: Int) : Estados(){
-        fun onEnter(){}
+        fun onEnter(): Int { nivel_actual = 2
+            println("Esta subiendo...")
+
+            if (nivel_0) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            } else if (nivel_1) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            } else if (nivel_1 && nivel_0) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            }
+            else{
+                //Si nada falla
+                org.danielcastelao.dam.estado_actual = Estados.Idle
+            }
+            return nivel_actual}
         override fun toString(): String {
             return "MovingUP"
         }
     }
     data class MovingDOWN(val estado_actual: Int) : Estados(){
-        fun onEnter(){}
+        fun onEnter(): Int {
+            nivel_actual = 2
+            println("Esta bajando...")
+
+            if (nivel_0) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            } else if (nivel_1) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            } else if (nivel_1 && nivel_0) {
+                nivel_actual = -1
+                org.danielcastelao.dam.estado_actual = Estados.Error(nivel_actual)
+
+            }
+            else{
+                //Si nada falla
+                org.danielcastelao.dam.estado_actual = Estados.Idle
+            }
+
+            return nivel_actual
+        }
         override fun toString(): String {
             return "MovingDOWN"
         }
     }
     data class Error(val estado_actual: Int) : Estados(){
-        fun onEnter(){}
+        fun onEnter(): Int {
+            nivel_actual = -1
+            println("Ha habido un problema, se esta solucionando")
+            org.danielcastelao.dam.estado_actual = Estados.Idle
+            return nivel_actual
+        }
         override fun toString(): String {
             return "Error"
         }

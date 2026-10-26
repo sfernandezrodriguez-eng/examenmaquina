@@ -14,58 +14,10 @@ fun gestor(): Int {
     when (val state=estado_actual) {
         is Estados.Idle -> state.onEnter()
 
-        is Estados.MovingUP -> {
-            nivel_actual = 2
-            println("Esta subiendo...")
+        is Estados.MovingUP -> state.onEnter()
 
-            if (nivel_0) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            } else if (nivel_1) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            } else if (nivel_1 && nivel_0) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            }
-            else{
-                //Si nada falla
-                estado_actual = Estados.Idle
-            }
-            return nivel_actual
-        }
-        is Estados.MovingDOWN -> {
-            nivel_actual = 2
-            println("Esta bajando...")
-
-            if (nivel_0) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            } else if (nivel_1) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            } else if (nivel_1 && nivel_0) {
-                nivel_actual = -1
-                estado_actual = Estados.Error(nivel_actual)
-
-            }
-            else{
-                //Si nada falla
-                estado_actual = Estados.Idle
-            }
-
-            return nivel_actual
-        }
-        is Estados.Error -> {
-            nivel_actual = -1
-            println("Ha habido un problema, se esta solucionando")
-            estado_actual = Estados.Idle
-            return nivel_actual
-        }
+        is Estados.MovingDOWN -> state.onEnter()
+        is Estados.Error -> state.onEnter()
     }
+    return nivel_actual
 }
